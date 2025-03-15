@@ -18,7 +18,7 @@ namespace WebApplication1.Models
         {
             if (session["ListaCarro"] != null)
             {
-                if (((List<Carro>)session["ListaCarro"]).Count > 0);
+                if (((List<Carro>)session["ListaCarro"]).Count > 0)
                 {
                     return;
                 }
@@ -39,8 +39,34 @@ namespace WebApplication1.Models
             if (session["ListaCarro"] != null)
             {
                 (session["ListaCarro"] as List<Carro>).Add(this);
+            }
+        }
 
+        public static Carro Procurar(HttpSessionStateBase session, int id)
+        {
+            if (session["ListaCarro"] != null)
+            {
+                return (session["ListaCarro"] as List<Carro>).ElementAt(id);
+            }
 
+            return null;
+        }
+        public void Excluir(HttpSessionStateBase session)
+        {
+            if (session["ListaCarro"] != null)
+            {
+                (session["ListaCarro"] as List<Carro>).Remove(this);
+            }
+        }
+
+        public void Editar(HttpSessionStateBase session, int id)
+        {
+            if (session["ListaCarro"] != null)
+            {
+                var carro = Carro.Procurar(session, id);
+                carro.Placa = this.Placa;
+                carro.Ano = this.Ano;
+                carro.Cor = this.Cor;
             }
         }
     }

@@ -195,8 +195,9 @@
     <Content Include="Views\Aluno\Create.cshtml" />
     <Content Include="Views\Carro\Create.cshtml" />
     <Content Include="Views\Carro\Exibir.cshtml" />
-    <Content Include="Views\Carro\Delete.cshtml" />
     <Content Include="Views\Aluno\Editar.cshtml" />
+    <Content Include="Views\Carro\Delete.cshtml" />
+    <Content Include="Views\Carro\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

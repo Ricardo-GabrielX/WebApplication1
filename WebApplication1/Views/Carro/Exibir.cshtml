@@ -2,6 +2,8 @@
 
 @{
     ViewBag.Title = "Exibir";
+    var link = Url.Action("Listar");
+    var linkEditar = Url.Action("Editar");
 }
 
 <h2>Exibir</h2>
@@ -37,6 +39,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Voltar para a lista", "Listar")
+    <a href="@linkEditar" class="btn btn-primary">
+        <i class="bi bi-pencil-square"></i> Editar
+    </a>
+    <a href="@link" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar para a lista
+    </a>
 </p>
