@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
+    var link = Url.Action("Listar");
 }
 
 <h2>Delete</h2>
@@ -32,9 +33,15 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Excluir" class="btn btn-danger" /> |
-            @Html.ActionLink("Voltar para a lista", "Listar")
-        </div>
+<div class="form-actions no-color">
+
+    <button type="submit" value="Excluir" class="btn btn-danger">
+        <i class="bi bi-trash3"></i> Excluir
+    </button>
+    <a href="@link" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar para a lista
+    </a>
+</div>
+
     }
 </div>

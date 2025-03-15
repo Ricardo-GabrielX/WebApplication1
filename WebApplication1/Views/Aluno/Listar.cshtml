@@ -2,14 +2,15 @@
 
 @{
     ViewBag.Title = "Listar";
+
 }
 
-<h2>Listar</h2>
+<h2 class="text-light">Listar</h2>
 
-<p>
-    @Html.ActionLink("Cadastrar novo aluno", "Create")
+<p class="btn btn-outline-dark">
+    @Html.ActionLink("➕ Cadastrar novo aluno", "Create")
 </p>
-<table class="table table-hover table-dark">
+<table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -29,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.RA)
         </td>
         <td>
-            @Html.ActionLink("✏", "Editar", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }) |
-            @Html.ActionLink("👁", "Exibir", new {  id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }) |
-            @Html.ActionLink("🗑", "Delete", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item)})
+            @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) } , new { @class="btn btn-warning" }) 
+            @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-primary" }) 
+            @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
