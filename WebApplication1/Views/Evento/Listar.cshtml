@@ -6,10 +6,10 @@
 
 <h2>Listar</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="btn btn-outline-dark">
+    @Html.ActionLink("➕ Cadastrar novo aluno", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Local)
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Data)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Evento>().IndexOf(item) }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

@@ -202,6 +202,10 @@
     <Content Include="Views\Celular\Create.cshtml" />
     <Content Include="Views\Celular\Editar.cshtml" />
     <Content Include="Views\Evento\Listar.cshtml" />
+    <Content Include="Views\Evento\Exibir.cshtml" />
+    <Content Include="Views\Evento\Delete.cshtml" />
+    <Content Include="Views\Evento\Create.cshtml" />
+    <Content Include="Views\Evento\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
