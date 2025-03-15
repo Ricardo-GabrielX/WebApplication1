@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Models.Celular
+
+@{
+    ViewBag.Title = "Exibir";
+    var link = Url.Action("Listar");
+    var linkEditar = Url.Action("Editar");
+}
+
+<h2>Exibir</h2>
+
+<div>
+    <h4>Celular</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Novo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Novo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@linkEditar" class="btn btn-primary">
+        <i class="bi bi-pencil-square"></i> Editar
+    </a>
+    <a href="@link" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Voltar para a lista
+    </a>
+</p>

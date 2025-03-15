@@ -189,8 +189,6 @@
     <Content Include="Views\Aluno\Listar.cshtml" />
     <Content Include="Views\Aluno\Exibir.cshtml" />
     <Content Include="Views\Carro\Listar.cshtml" />
-    <Content Include="Views\Celular\Listar.cshtml" />
-    <Content Include="Views\Evento\Listar.cshtml" />
     <Content Include="Views\Aluno\Delete.cshtml" />
     <Content Include="Views\Aluno\Create.cshtml" />
     <Content Include="Views\Carro\Create.cshtml" />
@@ -198,6 +196,12 @@
     <Content Include="Views\Aluno\Editar.cshtml" />
     <Content Include="Views\Carro\Delete.cshtml" />
     <Content Include="Views\Carro\Editar.cshtml" />
+    <Content Include="Views\Celular\Listar.cshtml" />
+    <Content Include="Views\Celular\Exibir.cshtml" />
+    <Content Include="Views\Celular\Delete.cshtml" />
+    <Content Include="Views\Celular\Create.cshtml" />
+    <Content Include="Views\Celular\Editar.cshtml" />
+    <Content Include="Views\Evento\Listar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

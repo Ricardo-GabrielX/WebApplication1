@@ -1,9 +1,15 @@
 ﻿@model IEnumerable<WebApplication1.Models.Celular>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+@{
+    ViewBag.Title = "Listar";
+}
+
+<h2>Listar</h2>
+
+<p class="btn btn-outline-dark">
+    @Html.ActionLink("➕ Cadastrar novo aluno", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Numero)
@@ -29,9 +35,9 @@
             @Html.DisplayFor(modelItem => item.Novo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
