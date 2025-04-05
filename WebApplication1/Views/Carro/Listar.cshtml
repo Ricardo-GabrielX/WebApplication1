@@ -9,8 +9,8 @@
 <div class="buttonCreate">
     @Html.ActionLink("➕ Cadastrar novo carro", "Create", null, new { @class = " button" })
 </div>
-<table class="table table-hover table-dark table-bordered">
-    <tr>
+<table class="table table-hover table-dark table-bordered ">
+    <tr class="table-active">
         <th>
             @Html.DisplayNameFor(model => model.Placa)
         </th>
@@ -23,7 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.DataFabricacao)
         </th>
-        <th></th>
+        <th>
+            @Html.ActionLink("📄 Baixar PDF", "GerarPdf", null, new { @class = "btn btn-success btn-hover-scale" })
+        </th>
     </tr>
 
 @foreach (var item in Model) {

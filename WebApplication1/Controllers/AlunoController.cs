@@ -7,8 +7,6 @@ using WebApplication1.Models;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
-using System.Web.UI.WebControls;
-
 
 
 namespace WebApplication1.Controllers

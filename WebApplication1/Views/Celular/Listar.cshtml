@@ -6,9 +6,10 @@
 
 <h2>Listar</h2>
 
-<p class="btn btn-outline-dark">
-    @Html.ActionLink("➕ Cadastrar novo celular", "Create")
-</p>
+<div class="buttonCreate">
+    @Html.ActionLink("➕ Cadastrar novo celular", "Create", null, new { @class = " button" })
+</div>
+
 <table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
@@ -23,29 +24,32 @@
         <th>
             @Html.DisplayNameFor(model => model.DataCompra)
         </th>
-        <th></th>
+        <th>
+            @Html.ActionLink("📄 Baixar PDF", "GerarPdf", null, new { @class = "btn btn-success btn-hover-scale" })
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marca)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Novo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataCompra)
-        </td>
-        <td>
-            @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Novo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCompra)
+            </td>
+            <td>
+                @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Celular>().IndexOf(item) }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -42,12 +42,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.DataCompra, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox">
-                @Html.TextBoxFor(model => model.DataCompra, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-                @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "text-danger" })
-            </div>
+            @Html.TextBoxFor(model => model.DataCompra, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(model => model.DataCompra, "", new { @class = "text-danger" })
         </div>
     </div>
 

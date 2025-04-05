@@ -9,10 +9,7 @@ namespace WebApplication1.Models
     public class Carro
     {
         public string Placa { get; set; }
-
-
         public string Cor { get; set; }
-
         public string Ano { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
