@@ -129,7 +129,7 @@ namespace WebApplication1.Controllers
                     }
                 }
 
-                return File(memoryStream.ToArray(), "application/pdf", "ListaAlunos.pdf");
+                return File(memoryStream.ToArray(), "application/pdf", "ListaCelular.pdf");
             }
         }
     }

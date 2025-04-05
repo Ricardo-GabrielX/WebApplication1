@@ -6,9 +6,10 @@
 
 <h2>Listar</h2>
 
-<p class="btn btn-outline-dark">
-    @Html.ActionLink("➕ Cadastrar novo Evento", "Create")
-</p>
+<div class="buttonCreate">
+    @Html.ActionLink("➕ Cadastrar novo evento", "Create", null, new { @class = " button" })
+</div>
+
 <table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
@@ -17,7 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Data)
         </th>
-        <th></th>
+        <th>
+            @Html.ActionLink("📄 Baixar PDF", "GerarPdf", null, new { @class = "btn btn-success btn-hover-scale" })
+        </th>
     </tr>
 
 @foreach (var item in Model) {
