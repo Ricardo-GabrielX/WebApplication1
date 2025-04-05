@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+
 
 namespace WebApplication1.Models
 {
@@ -10,6 +12,9 @@ namespace WebApplication1.Models
 		public string Nome { get; set; }
 
 		public string RA { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime Data { get; set; }
 
         public static void GerarLista(HttpSessionStateBase session) { 
 			
@@ -21,9 +26,9 @@ namespace WebApplication1.Models
 				}
 			}
 			var lista = new List<Aluno>();
-			lista.Add(new Aluno { Nome= "Naruto", RA = "1234" });
-			lista.Add(new Aluno { Nome= "Poatan", RA = "9432" });
-			lista.Add(new Aluno { Nome= "Eba", RA = "4329" });
+			lista.Add(new Aluno { Nome= "Naruto", RA = "1234" , Data = new DateTime(2025,02,08) });
+			lista.Add(new Aluno { Nome= "Poatan", RA = "9432", Data = DateTime.Now });
+			lista.Add(new Aluno { Nome= "Eba", RA = "4329", Data = DateTime.Now });
 		
 			session.Remove("ListaAluno");
 			session.Add("ListaAluno", lista);
@@ -61,6 +66,7 @@ namespace WebApplication1.Models
                 var aluno = Aluno.Procurar(session, id);
                 aluno.Nome = this.Nome;
                 aluno.RA = this.RA;
+                aluno.Data = this.Data;
             }
         }
     }

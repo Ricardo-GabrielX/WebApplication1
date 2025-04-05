@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,11 +10,13 @@ namespace WebApplication1.Models
     {
         public string Placa { get; set; }
 
-        public string Ano { get; set; }
 
         public string Cor { get; set; }
 
+        public string Ano { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DataFabricacao { get; set; }
         public static void GerarLista(HttpSessionStateBase session)
         {
             if (session["ListaCarro"] != null)
@@ -25,9 +28,9 @@ namespace WebApplication1.Models
 
             }
             var lista = new List<Carro>();
-            lista.Add(new Carro { Placa = "BRA123", Ano = "1234" , Cor="Vermelho" });
-            lista.Add(new Carro { Placa = "EUA123", Ano = "1234" , Cor="Azul" });
-            lista.Add(new Carro { Placa = "ARG123", Ano = "1234" , Cor="Prata" });
+            lista.Add(new Carro { Placa = "BRA123", DataFabricacao = DateTime.Now, Cor="Vermelho", Ano= "1234" });
+            lista.Add(new Carro { Placa = "EUA123", DataFabricacao = DateTime.Now, Cor="Azul", Ano = "2020" });
+            lista.Add(new Carro { Placa = "ARG123", DataFabricacao = DateTime.Now, Cor="Prata", Ano = "2022" });
 
 
             session.Remove("ListaCarro");
@@ -67,6 +70,7 @@ namespace WebApplication1.Models
                 carro.Placa = this.Placa;
                 carro.Ano = this.Ano;
                 carro.Cor = this.Cor;
+                carro.DataFabricacao = this.DataFabricacao;
             }
         }
     }

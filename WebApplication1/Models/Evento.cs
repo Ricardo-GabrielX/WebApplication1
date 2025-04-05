@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,8 +10,8 @@ namespace WebApplication1.Models
     {
         public string Local { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
-
 
         public static void GerarLista(HttpSessionStateBase session)
         {
@@ -23,9 +24,9 @@ namespace WebApplication1.Models
 
             }
             var lista = new List<Evento>();
-            lista.Add(new Evento { Local= "Jd blabla", Data = DateTime.Now });
-            lista.Add(new Evento { Local= "Jd blabla", Data = DateTime.Now });
-            lista.Add(new Evento { Local= "Jd blabla", Data = DateTime.Now });
+            lista.Add(new Evento { Local= "Jd Araraquara", Data = DateTime.Now });
+            lista.Add(new Evento { Local= "Jd Dos Anjos", Data = DateTime.Now });
+            lista.Add(new Evento { Local= "Jd Lá Tem", Data = DateTime.Now });
 
 
             session.Remove("ListaEvento");
@@ -63,6 +64,7 @@ namespace WebApplication1.Models
             {
                 var evento = Evento.Procurar(session, id);
                 evento.Local = this.Local;
+                evento.Data = this.Data;
             }
         }
     }

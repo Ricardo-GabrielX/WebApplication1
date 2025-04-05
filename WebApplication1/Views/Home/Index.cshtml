@@ -2,10 +2,96 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <section class="row card bg-dark rounded-4" aria-labelledby="aspnetTitle">
-        <h1 id="title" class="text-center">Crud em ASP.NET</h1>
-        <hr class="text-success"/>
-        <p class="lead mt-3 text-center"> Olá, este é um projeto em ASP.NET feito durante as aulas, entendendo os fundamentos do ASP.NET.</p>
+<main class="container mt-5">
+    <!-- Seção Hero Minimalista -->
+    <section class="text-center mb-5">
+        <!-- Título sutil com borda inferior -->
+        <div class="d-inline-block mb-4 pb-3 border-bottom border-success border-2">
+            <h1 class="display-5 fw-light text-light">
+                CRUD ASP<span class="text-success">.</span>NET
+            </h1>
+        </div>
+
+        <!-- Subtítulo minimalista -->
+        <p class="text-light-50 fs-5">
+            Projeto educacional desenvolvido durante as aulas<br>
+            <span class="d-block mt-2 text-success">Fundamentos do ASP.NET MVC</span>
+        </p>
     </section>
+
+    <!-- Cards Minimalistas -->
+    <div class="row g-4 justify-content-center">
+        <!-- Card Aluno -->
+        <div class="col-md-5 col-lg-3">
+            <a href="@Url.Action("Listar", "Aluno")" class="card-link">
+                <div class="card bg-transparent text-light border-light border-opacity-25 rounded-0 h-100 card-hover">
+                    <div class="card-body text-center py-4">
+                        <i class="bi bi-person fs-3 text-success mb-3"></i>
+                        <h6 class="card-title fw-normal">ALUNOS</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card Carro -->
+        <div class="col-md-5 col-lg-3">
+            <a href="@Url.Action("Listar", "Carro")" class="card-link">
+                <div class="card bg-transparent text-light border-light border-opacity-25 rounded-0 h-100 card-hover">
+                    <div class="card-body text-center py-4">
+                        <i class="bi bi-car-front fs-3 text-success mb-3"></i>
+                        <h6 class="card-title fw-normal">CARROS</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card Celular -->
+        <div class="col-md-5 col-lg-3">
+            <a href="@Url.Action("Listar", "Celular")" class="card-link">
+                <div class="card bg-transparent text-light border-light border-opacity-25 rounded-0 h-100 card-hover">
+                    <div class="card-body text-center py-4">
+                        <i class="bi bi-phone fs-3 text-success mb-3"></i>
+                        <h6 class="card-title fw-normal">CELULARES</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card Evento -->
+        <div class="col-md-5 col-lg-3">
+            <a href="@Url.Action("Listar", "Evento")" class="card-link">
+                <div class="card bg-transparent text-light border-light border-opacity-25 rounded-0 h-100 card-hover">
+                    <div class="card-body text-center py-4">
+                        <i class="bi bi-calendar fs-3 text-success mb-3"></i>
+                        <h6 class="card-title fw-normal">EVENTOS</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 </main>
+
+<style>
+    .card-hover {
+        transition: all 0.25s ease;
+        border-width: 1px;
+    }
+
+    .card-hover:hover {
+            border-color: #20c997 !important;
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.03) !important;
+    }
+
+    .card-link {
+        text-decoration: none;
+    }
+
+    .text-light-50 {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    body {
+        background-color: #121212;
+    }
+</style>

@@ -6,9 +6,9 @@
 
 <h2>Listar</h2>
 
-<p class="btn btn-outline-dark">
-    @Html.ActionLink("➕ Cadastrar novo carro", "Create")
-</p>
+<div class="buttonCreate">
+    @Html.ActionLink("➕ Cadastrar novo carro", "Create", null, new { @class = " button" })
+</div>
 <table class="table table-hover table-dark table-bordered">
     <tr>
         <th>
@@ -19,6 +19,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Cor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataFabricacao)
         </th>
         <th></th>
     </tr>
@@ -33,6 +36,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataFabricacao)
         </td>
         <td>
             @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Carro>().IndexOf(item) }, new { @class = "btn btn-warning" })

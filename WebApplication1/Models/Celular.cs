@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,8 @@ namespace WebApplication1.Models
 
         public bool Novo { get; set; }
 
-
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DataCompra { get; set; }
         public static void GerarLista(HttpSessionStateBase session)
         {
             if (session["ListaCelular"] != null)
@@ -25,9 +27,9 @@ namespace WebApplication1.Models
 
             }
             var lista = new List<Celular>();
-            lista.Add(new Celular { Numero = 1599231231, Marca = "Motorola", Novo = true });
-            lista.Add(new Celular { Numero = 1599211111, Marca = "Samsung", Novo = true });
-            lista.Add(new Celular { Numero = 1599321321, Marca = "Iphone", Novo = false });
+            lista.Add(new Celular { Numero = 1599231231, Marca = "Motorola", Novo = true, DataCompra = DateTime.Now });
+            lista.Add(new Celular { Numero = 1599211111, Marca = "Samsung", Novo = true, DataCompra = DateTime.Now });
+            lista.Add(new Celular { Numero = 1599321321, Marca = "Iphone", Novo = false , DataCompra = DateTime.Now });
 
             session.Remove("ListaCelular");
             session.Add("ListaCelular", lista);
@@ -66,6 +68,7 @@ namespace WebApplication1.Models
                 celular.Numero = this.Numero;
                 celular.Marca = this.Marca;
                 celular.Novo = this.Novo;
+                celular.DataCompra = this.DataCompra;
             }
         }
     }
