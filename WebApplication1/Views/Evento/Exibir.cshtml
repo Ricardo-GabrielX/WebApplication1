@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "Exibir";
-    var link = Url.Action("Listar");
-    var linkEditar = Url.Action("Editar");
+    var linkEditar = Url.Action("Editar", new { id = ViewBag.Id });
+    var linkVoltar = Url.Action("Listar");
 }
 
 <h2>Exibir</h2>
@@ -34,7 +34,7 @@
     <a href="@linkEditar" class="btn btn-primary">
         <i class="bi bi-pencil-square"></i> Editar
     </a>
-    <a href="@link" class="btn btn-secondary">
+    <a href="@linkVoltar" class="btn btn-secondary">
         <i class="bi bi-arrow-left"></i> Voltar para a lista
     </a>
 </p>

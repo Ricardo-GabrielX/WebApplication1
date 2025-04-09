@@ -26,7 +26,9 @@ namespace WebApplication1.Controllers
 
         public ActionResult Exibir(int id)
         {
-            return View((Session["ListaEvento"] as List<Evento>).ElementAt(id));
+            ViewBag.Id = id;
+            var evento = (Session["ListaEvento"] as List<Evento>).ElementAt(id);
+            return View(evento);
         }
 
         public ActionResult Delete(int id)
