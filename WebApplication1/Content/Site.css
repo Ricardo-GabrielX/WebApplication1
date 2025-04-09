@@ -18,3 +18,65 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.card-hover {
+    transition: all 0.25s ease;
+    border-width: 1px;
+}
+
+    .card-hover:hover {
+        border-color: #20c997 !important;
+        transform: translateY(-2px);
+        background-color: rgba(255, 255, 255, 0.03) !important;
+    }
+
+.card-link {
+    text-decoration: none;
+}
+
+.text-light-50 {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    background-color: #121212;
+}
+
+
+/* BOTAO CADASTRAR */
+
+
+.buttonCreate {
+    margin: 30px 0;
+}
+
+.button {
+    --bg: #fafafa;
+    --hover-bg: #198754;
+    --hover-text: #fff;
+    color: #000;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+    margin-bottom: 15px;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+    .button:hover {
+        color: var(--hover-text);
+        transform: translate(-0.25rem, -0.25rem);
+        background: var(--hover-bg);
+        box-shadow: 0.25rem 0.25rem var(--bg);
+    }
+
+    .button:active {
+        transform: translate(0);
+        box-shadow: none;
+    }
+
+
+
