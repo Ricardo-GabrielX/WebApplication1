@@ -1,0 +1,81 @@
+﻿.form-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+}
+
+.form-title {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.form-subtitle {
+    font-size: 1rem;
+    color: #aaa;
+}
+
+.form-fields-container {
+    background: var(--color-surface);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.6rem;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(32, 201, 151, 0.25);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.form-validation {
+    color: #ff6b6b;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+

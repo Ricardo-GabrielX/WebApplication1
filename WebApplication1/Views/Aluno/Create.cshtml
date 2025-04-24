@@ -1,62 +1,54 @@
 ﻿@model WebApplication1.Models.Aluno
-
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Cadastrar Aluno";
     var link = Url.Action("Listar");
 }
-
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Aluno</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+<div class="form-container">
+    <div class="form-header">
+        <div class="form-icon">
+            <i class="bi bi-person-plus"></i>
         </div>
+        <h1 class="form-title">Cadastrar Aluno</h1>
+        <div class="form-subtitle">Preencha os dados do novo aluno</div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.RA, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.RA, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RA, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
-            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="form-fields-container">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-input", placeholder = "Nome completo" } })
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "form-validation" })
+                </div>
 
-    <div class="form-group mt-3">
-        <div class="col-md-offset-2 col-md-10">
-            <button type="submit" value="Create" class="btn btn-primary">
-                <i class="bi bi-person-plus-fill"></i> Cadastrar
-            </button>
-            <a href="@link" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Voltar para a lista
-            </a>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RA, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.RA, new { htmlAttributes = new { @class = "form-input", placeholder = "000000000" } })
+                    @Html.ValidationMessageFor(model => model.RA, "", new { @class = "form-validation" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-input", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.Data, "", new { @class = "form-validation" })
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="@link" class="aluno-btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+                <button type="submit" class="aluno-btn-primary">
+                    <i class="bi bi-check-lg"></i> Salvar
+                </button>
+            </div>
         </div>
-    </div>
+    }
 </div>
-}
-
-
-    
-
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

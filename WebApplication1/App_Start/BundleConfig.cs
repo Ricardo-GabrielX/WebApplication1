@@ -25,6 +25,14 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Aluno").Include(
+                "~/Content/styles/Aluno/Listar.css",
+                "~/Content/styles/Aluno/Create.css",
+                "~/Content/styles/Aluno/Exibir.css",
+                "~/Content/styles/Aluno/Editar.css",
+                "~/Content/styles/Aluno/buttons.css"
+                ));
         }
     }
 }
