@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Listar";
-
 }
 
 <h2>Listar</h2>
@@ -11,38 +10,119 @@
     @Html.ActionLink("➕ Cadastrar novo aluno", "Create", null, new { @class = " button" })
 </div>
 
-<table class="table table-hover table-dark table-bordered">
-    <tr class="table-active">
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Data)
-        </th>
-        <th>
-            @Html.ActionLink("📄 Baixar PDF", "GerarPdf", null, new { @class = "btn btn-success btn-hover-scale" })
-        </th>
-    </tr>
+<table id="tabela-alunos" class="table table-hover table-dark table-bordered">
+    <thead>
+        <tr class="table-active">
+            <th>@Html.DisplayNameFor(model => model.Nome)</th>
+            <th>@Html.DisplayNameFor(model => model.RA)</th>
+            <th>@Html.DisplayNameFor(model => model.Data)</th>
+            <th>
+                <div class="btn-group-export">
+                    <a href="@Url.Action("GerarPdf")" class="btn btn-export btn-pdf">
+                        <i class="bi bi-file-earmark-pdf"></i> PDF
+                    </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data)
-        </td>
-        <td>
-            @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("🗑 Excluir", "Delete", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+                    <a href="@Url.Action("GerarExcel")" class="btn btn-export btn-excel">
+                        <i class="bi bi-file-earmark-excel"></i> Excel
+                    </a>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                <td>@Html.DisplayFor(modelItem => item.RA)</td>
+                <td>@Html.DisplayFor(modelItem => item.Data)</td>
+                <td>
+                    @Html.ActionLink("✏ Editar", "Editar", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("👁 Visualizar", "Exibir", new { id = Model.ToList<WebApplication1.Models.Aluno>().IndexOf(item) }, new { @class = "btn btn-primary" })
+                    <button class="btn btn-danger btn-excluir" data-id="@item.Id">🗑 Excluir</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+<div class="modal fade" id="modalConfirmarExclusao" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+        
+            <div class="modal-header border-0 text-white" style="background: linear-gradient(135deg, #dc3545, #c82333);">
+                <h5 class="modal-title fs-5 fw-semibold">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    Confirmar Exclusão
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+
+            <div class="modal-body py-4">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 text-danger fs-1 me-3">
+                        <i class="bi bi-trash3-fill"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1 text-danger">Você está prestes a excluir um aluno!</h6>
+                        <p class="mb-0 text-muted">Esta ação não pode ser desfeita. Tem certeza que deseja continuar?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle me-2"></i>Cancelar
+                </button>
+                <button type="button" id="confirmar-exclusao" class="btn btn-danger rounded-pill px-4">
+                    <i class="bi bi-trash-fill me-2"></i>Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    let idParaExcluir = null;
+
+    $(document).ready(function () {
+        var table = $('#tabela-alunos').DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json",
+                paginate: {
+                    previous: '<i class="bi bi-chevron-left"></i>',
+                    next: '<i class="bi bi-chevron-right"></i>'
+                }
+            },
+
+            initComplete: function () {
+                $('#tabela-alunos').addClass('js-fade-in');
+            }
+        });
+
+        $('.btn-excluir').on('click', function () {
+            idParaExcluir = $(this).data('id');
+            $('#modalConfirmarExclusao').modal('show');
+        });
+
+        $('#confirmar-exclusao').on('click', function () {
+            if (idParaExcluir !== null) {
+                $.post('@Url.Action("DeleteAjax")', { id: idParaExcluir }, function (data) {
+                    if (data.sucesso) {
+                        location.reload();
+                    } else {
+                        alert("Erro ao excluir aluno.");
+                    }
+                });
+            }
+        });
+    });
+    </script>
+
+}

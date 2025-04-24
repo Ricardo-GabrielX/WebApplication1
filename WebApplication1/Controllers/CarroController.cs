@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using OfficeOpenXml;
 
 namespace WebApplication1.Controllers
 {
@@ -54,6 +55,11 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Carro carro)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(carro);
+            }
+
             carro.Adicionar(Session);
 
             return RedirectToAction("Listar");
@@ -133,6 +139,64 @@ namespace WebApplication1.Controllers
                 return File(memoryStream.ToArray(), "application/pdf", "ListaCarro.pdf");
             }
         }
+
+        public ActionResult GerarExcel()
+        {
+            var lista = Session["ListaCarro"] as List<Carro>;
+
+            if (lista == null || !lista.Any())
+                return RedirectToAction("Listar");
+
+            ExcelPackage.License.SetNonCommercialOrganization("ETEC Fernando Prestes extensão Fatec");
+
+            using (var pacote = new ExcelPackage())
+            {
+                var planilha = pacote.Workbook.Worksheets.Add("Carros");
+
+                // Cabeçalho
+                planilha.Cells[1, 1].Value = "Placa";
+                planilha.Cells[1, 2].Value = "Cor";
+                planilha.Cells[1, 3].Value = "Ano";
+                planilha.Cells[1, 4].Value = "Data de Fabricação";
+
+                using (var faixaCabecalho = planilha.Cells[1, 1, 1, 4]) 
+                {
+                    faixaCabecalho.Style.Font.Bold = true;
+                    faixaCabecalho.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    faixaCabecalho.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGreen); 
+                    faixaCabecalho.Style.Font.Color.SetColor(System.Drawing.Color.Black);
+                    faixaCabecalho.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                }
+
+                // Dados
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    var carro = lista[i];
+                    int linha = i + 2;
+
+                    planilha.Cells[linha, 1].Value = carro.Placa;
+                    planilha.Cells[linha, 2].Value = carro.Cor;
+                    planilha.Cells[linha, 3].Value = carro.Ano;
+                    planilha.Cells[linha, 4].Value = carro.DataFabricacao.ToString("dd/MM/yyyy");
+                }
+
+                planilha.Cells.AutoFitColumns();
+
+                // Bordas em todas as células com dados
+                var faixaDados = planilha.Cells[1, 1, lista.Count + 1, 4]; 
+                faixaDados.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                faixaDados.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                faixaDados.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+                faixaDados.Style.Border.Right.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
+
+                return File(
+                    pacote.GetAsByteArray(),
+                    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    "Carros.xlsx"
+                );
+            }
+        }
+
 
     }
 }

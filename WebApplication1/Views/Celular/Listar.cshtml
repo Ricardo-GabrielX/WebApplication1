@@ -26,6 +26,7 @@
         </th>
         <th>
             @Html.ActionLink("📄 Baixar PDF", "GerarPdf", null, new { @class = "btn btn-success btn-hover-scale" })
+            @Html.ActionLink("📄 Baixar EXCEL", "GerarExcel", null, new { @class = "btn btn-success btn-hover-scale" })
         </th>
     </tr>
 
@@ -33,7 +34,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Numero)
+                @Html.DisplayFor(modelItem => item.NumeroFormatado)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Marca)
@@ -53,3 +54,8 @@
     }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

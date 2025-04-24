@@ -8,14 +8,30 @@ namespace WebApplication1.Models
 {
     public class Celular
     {
-        public int Numero { get; set; }
+        [Required(ErrorMessage = "O número é obrigatório.")]
+        public string Numero { get; set; }
 
+        [Required(ErrorMessage = "A marca é obrigatório.")]
         public string Marca { get; set; }
 
         public bool Novo { get; set; }
 
+        [Required(ErrorMessage = "A data de compra é obrigatória.")]
+        [Display(Name = "Data de compra")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataCompra { get; set; }
+
+        public string NumeroFormatado
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Numero))
+                    return Numero;
+
+                return Convert.ToInt64(Numero).ToString("(00) 00000-0000");
+            }
+        }
+
         public static void GerarLista(HttpSessionStateBase session)
         {
             if (session["ListaCelular"] != null)
@@ -27,9 +43,9 @@ namespace WebApplication1.Models
 
             }
             var lista = new List<Celular>();
-            lista.Add(new Celular { Numero = 1599231231, Marca = "Motorola", Novo = true, DataCompra = DateTime.Now });
-            lista.Add(new Celular { Numero = 1599211111, Marca = "Samsung", Novo = true, DataCompra = DateTime.Now });
-            lista.Add(new Celular { Numero = 1599321321, Marca = "Iphone", Novo = false , DataCompra = DateTime.Now });
+            lista.Add(new Celular { Numero = "15992312312" , Marca = "Motorola", Novo = true, DataCompra = DateTime.Now });
+            lista.Add(new Celular { Numero = "15992111113" , Marca = "Samsung", Novo = true, DataCompra = DateTime.Now });
+            lista.Add(new Celular { Numero = "15993213214" , Marca = "Iphone", Novo = false , DataCompra = DateTime.Now });
 
             session.Remove("ListaCelular");
             session.Add("ListaCelular", lista);

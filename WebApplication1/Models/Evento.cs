@@ -8,8 +8,11 @@ namespace WebApplication1.Models
 {
     public class Evento
     {
+        [Required(ErrorMessage = "O local do evento é obrigatório.")]
         public string Local { get; set; }
 
+        [Required(ErrorMessage = "A data do evento é obrigatória.")]
+        [Display(Name = "Data do evento")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
 

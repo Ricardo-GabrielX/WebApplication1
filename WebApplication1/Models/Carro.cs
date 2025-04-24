@@ -8,10 +8,18 @@ namespace WebApplication1.Models
 {
     public class Carro
     {
+        [Required(ErrorMessage = "A placa é obrigatório.")]
         public string Placa { get; set; }
+
+        [Required(ErrorMessage = "A cor é obrigatório.")]
         public string Cor { get; set; }
+
+        [Required(ErrorMessage = "O ano do carro é obrigatório.")]
+        [Range(1900, 9999, ErrorMessage = "O ano deve ser um número válido entre 1900 e 9999.")]
         public string Ano { get; set; }
 
+        [Required(ErrorMessage = "A data de fabricação é obrigatória.")]
+        [Display(Name = "Data de fabricação")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataFabricacao { get; set; }
         public static void GerarLista(HttpSessionStateBase session)
