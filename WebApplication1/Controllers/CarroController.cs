@@ -33,9 +33,18 @@ namespace WebApplication1.Controllers
             return View(carro);
         }
 
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public ActionResult DeleteAjax(int id)
         {
-            return View((Session["ListaCarro"] as List<Carro>).ElementAt(id));
+            var carros = Session["ListaCarro"] as List<Carro>;
+            var carro = carros?.FirstOrDefault(a => a.Id == id);
+
+            if (carro == null)
+                return Json(new { sucesso = false, mensagem = "Carro não encontrado" });
+
+            carros.Remove(carro);
+            Session["ListaAluno"] = carros;
+            return Json(new { sucesso = true });
         }
 
         [HttpPost]
@@ -106,13 +115,12 @@ namespace WebApplication1.Controllers
                     document.Add(Chunk.NEWLINE);
 
                     // Tabela
-                    PdfPTable table = new PdfPTable(4);
+                    PdfPTable table = new PdfPTable(3);
                     table.WidthPercentage = 100;
 
                     // Cabeçalhos
                     table.AddCell(new Phrase("Placa", headerFont));
                     table.AddCell(new Phrase("Cor", headerFont));
-                    table.AddCell(new Phrase("Ano", headerFont));
                     table.AddCell(new Phrase("Data de fabricação", headerFont));
 
                     // Dados
@@ -120,8 +128,7 @@ namespace WebApplication1.Controllers
                     {
                         table.AddCell(new Phrase(carro.Placa ?? "", normalFont));
                         table.AddCell(new Phrase(carro.Cor ?? "", normalFont));
-                        table.AddCell(new Phrase(carro.Ano ?? "", normalFont));
-
+           
                         string dataFormatada = carro.DataFabricacao.ToString("dd/MM/yyyy");
                         table.AddCell(new Phrase(dataFormatada, normalFont));
                     }
@@ -156,10 +163,9 @@ namespace WebApplication1.Controllers
                 // Cabeçalho
                 planilha.Cells[1, 1].Value = "Placa";
                 planilha.Cells[1, 2].Value = "Cor";
-                planilha.Cells[1, 3].Value = "Ano";
-                planilha.Cells[1, 4].Value = "Data de Fabricação";
+                planilha.Cells[1, 3].Value = "Data de Fabricação";
 
-                using (var faixaCabecalho = planilha.Cells[1, 1, 1, 4]) 
+                using (var faixaCabecalho = planilha.Cells[1, 1, 1, 3]) 
                 {
                     faixaCabecalho.Style.Font.Bold = true;
                     faixaCabecalho.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
@@ -176,14 +182,13 @@ namespace WebApplication1.Controllers
 
                     planilha.Cells[linha, 1].Value = carro.Placa;
                     planilha.Cells[linha, 2].Value = carro.Cor;
-                    planilha.Cells[linha, 3].Value = carro.Ano;
-                    planilha.Cells[linha, 4].Value = carro.DataFabricacao.ToString("dd/MM/yyyy");
+                    planilha.Cells[linha, 3].Value = carro.DataFabricacao.ToString("dd/MM/yyyy");
                 }
 
                 planilha.Cells.AutoFitColumns();
 
                 // Bordas em todas as células com dados
-                var faixaDados = planilha.Cells[1, 1, lista.Count + 1, 4]; 
+                var faixaDados = planilha.Cells[1, 1, lista.Count + 1, 3]; 
                 faixaDados.Style.Border.Top.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 faixaDados.Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;
                 faixaDados.Style.Border.Left.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thin;

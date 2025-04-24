@@ -49,15 +49,7 @@ namespace WebApplication1.Controllers
             return Json(new { sucesso = true });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Delete(int id, Aluno aluno)
-        {
-            Aluno.Procurar(Session, id)?.Excluir(Session);
-
-            return RedirectToAction("Listar");
-        }
+       
 
         public ActionResult Create()
         {

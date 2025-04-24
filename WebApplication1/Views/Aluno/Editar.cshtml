@@ -4,45 +4,45 @@
     var link = Url.Action("Listar");
 }
 
-<div class="aluno-edit-container">
-    <div class="aluno-edit-header">
-        <div class="aluno-edit-icon">
+<div class="edit-container">
+    <div class="edit-header">
+        <div class="edit-icon">
             <i class="bi bi-pencil-square"></i>
         </div>
-        <h1 class="aluno-edit-title">Editar Aluno</h1>
-        <div class="aluno-edit-subtitle">Atualize os dados do cadastro</div>
+        <h1 class="edit-title">Editar Aluno</h1>
+        <div class="edit-subtitle">Atualize os dados do cadastro</div>
     </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="aluno-edit-form">
-            @Html.ValidationSummary(true, "", new { @class = "aluno-validation-summary" })
+        <div class="edit-form">
+            @Html.ValidationSummary(true, "", new { @class = "edit-validation-summary" })
 
-            <div class="aluno-form-group">
-                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "aluno-form-label" })
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "aluno-form-input", placeholder = "Nome completo" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "aluno-validation-message" })
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "edit-form-input", placeholder = "Nome completo" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "edit-validation-message" })
             </div>
 
-            <div class="aluno-form-group">
-                @Html.LabelFor(model => model.RA, htmlAttributes: new { @class = "aluno-form-label" })
-                @Html.EditorFor(model => model.RA, new { htmlAttributes = new { @class = "aluno-form-input", placeholder = "000000000" } })
-                @Html.ValidationMessageFor(model => model.RA, "", new { @class = "aluno-validation-message" })
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.RA, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.EditorFor(model => model.RA, new { htmlAttributes = new { @class = "edit-form-input", placeholder = "000000000" } })
+                @Html.ValidationMessageFor(model => model.RA, "", new { @class = "edit-validation-message" })
             </div>
 
-            <div class="aluno-form-group">
-                @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "aluno-form-label" })
-                @Html.TextBoxFor(model => model.Data, "{0:yyyy-MM-dd}", new { @class = "aluno-form-input", type = "date" })
-                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "aluno-validation-message" })
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.TextBoxFor(model => model.Data, "{0:yyyy-MM-dd}", new { @class = "edit-form-input", type = "date" })
+                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "edit-validation-message" })
             </div>
 
-            <div class="aluno-form-actions">
-                <a href="@link" class="aluno-btn-secondary">
+            <div class="edit-form-actions">
+                <a href="@link" class="button-btn-secondary">
                     <i class="bi bi-x-circle-fill"></i> Cancelar
                 </a>
-                <button type="submit" class="aluno-btn-primary">
+                <button type="submit" class="button-btn-primary">
                     <i class="bi bi-check-circle-fill"></i> Salvar Alterações
                 </button>
             </div>

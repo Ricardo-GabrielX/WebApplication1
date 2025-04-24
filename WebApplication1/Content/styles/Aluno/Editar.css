@@ -1,33 +1,33 @@
-﻿.aluno-edit-container {
+﻿.edit-container {
     max-width: 700px;
     margin: 2rem auto;
     padding: 0 2rem;
 }
 
-.aluno-edit-header {
+.edit-header {
     text-align: center;
     margin-bottom: 3rem;
 }
 
-.aluno-edit-icon {
+.edit-icon {
     font-size: 3rem;
     color: var(--color-primary);
     margin-bottom: 1.5rem;
 }
 
-.aluno-edit-title {
+.edit-title {
     color: var(--color-text);
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
 }
 
-.aluno-edit-subtitle {
+.edit-subtitle {
     color: var(--color-text-secondary);
     font-size: 1.05rem;
 }
 
-.aluno-edit-form {
+.edit-form {
     background: var(--color-surface);
     border-radius: 12px;
     padding: 2rem;
@@ -36,36 +36,36 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.aluno-form-group {
+.edit-form-group {
     margin-bottom: 2rem;
 }
 
-.aluno-form-label {
+.edit-form-label {
     display: block;
     margin-bottom: 0.8rem;
-    color: var(--aluno-primary);
+    color: var(--color-primary);
     font-size: 0.95rem;
     font-weight: 600;
 }
 
-.aluno-form-input {
+.edit-form-input {
     width: 100%;
     padding: 1.1rem;
     background: rgba(15, 15, 15, 0.8);
     border: 1px solid var(--color-border);
     border-radius: 8px;
-    color: var(--aluno-text);
+    color: var(--color-text);
     font-size: 1rem;
     transition: all 0.3s ease;
 }
 
-.aluno-form-input:focus {
+.edit-form-input:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px var(--color-highlight);
 }
 
-.aluno-validation-summary {
+.edit-validation-summary {
     color: var(--color-error);
     background: rgba(255, 77, 77, 0.08);
     padding: 1.2rem;
@@ -74,37 +74,36 @@
     border-left: 4px solid var(--color-error);
 }
 
-.aluno-validation-message {
+.edit-validation-message {
     display: block;
     margin-top: 0.6rem;
     color: var(--color-error);
     font-size: 0.85rem;
 }
 
-.aluno-input-error {
+.edit-input-error {
     border-color: var(--color-error) !important;
 }
 
-.aluno-form-actions {
+.edit-form-actions {
     display: flex;
     gap: 1.5rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--color-border);
 }
 
-
 @media (max-width: 768px) {
-    .aluno-edit-container {
+    .edit-container {
         padding: 0 1.5rem;
     }
 
-    .aluno-form-actions {
+    .edit-form-actions {
         flex-direction: column;
         gap: 1rem;
     }
 
-    .aluno-btn-primary, .aluno-btn-secondary {
+    .edit-btn-primary, .edit-btn-secondary {
         padding: 1rem;
     }
 }

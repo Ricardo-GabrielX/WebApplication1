@@ -6,50 +6,40 @@
     var linkVoltar = Url.Action("Listar");
 }
 
-<h2>Exibir</h2>
+<div class="detail-container">
+    <div class="detail-header">
+        <div class="detail-icon">
+            <i class="bi bi-car-front"></i>
+        </div>
+        <h1 class="detail-title">Detalhes do Carro</h1>
+        <div class="detail-subtitle">Informações cadastrais</div>
+    </div>
 
-<div>
-    <h4>Carro</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Placa)
-        </dt>
+    <div class="detail-card">
+        <dl class="detail-list">
+            <div class="detail-item">
+                <dt>@Html.DisplayNameFor(model => model.Placa)</dt>
+                <dd>@Html.DisplayFor(model => model.Placa)</dd>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Placa)
-        </dd>
+            <div class="detail-item">
+                <dt>@Html.DisplayNameFor(model => model.Cor)</dt>
+                <dd>@Html.DisplayFor(model => model.Cor)</dd>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ano)
-        </dt>
+            <div class="detail-item">
+                <dt>@Html.DisplayNameFor(model => model.DataFabricacao)</dt>
+                <dd>@Html.DisplayFor(model => model.DataFabricacao)</dd>
+            </div>
+        </dl>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ano)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cor)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataFabricacao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataFabricacao)
-        </dd>
-    </dl>
+    <div class="detail-actions">
+        <a href="@linkVoltar" class="button-btn-secondary">
+            <i class="bi bi-arrow-left"></i> Voltar
+        </a>
+        <a href="@linkEditar" class="button-btn-primary">
+            <i class="bi bi-pencil-square"></i> Editar
+        </a>
+    </div>
 </div>
-<p>
-    <a href="@linkEditar" class="btn btn-primary">
-        <i class="bi bi-pencil-square"></i> Editar
-    </a>
-    <a href="@linkVoltar" class="btn btn-secondary">
-        <i class="bi bi-arrow-left"></i> Voltar para a lista
-    </a>
-</p>
