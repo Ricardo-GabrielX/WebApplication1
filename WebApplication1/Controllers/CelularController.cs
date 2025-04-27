@@ -32,19 +32,18 @@ namespace WebApplication1.Controllers
             return View(celular);
         }
 
-        public ActionResult Delete(int id)
-        {
-            return View((Session["ListaCelular"] as List<Celular>).ElementAt(id));
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Delete(int id, Celular celular)
+        public ActionResult DeleteAjax(int id)
         {
-            Celular.Procurar(Session, id)?.Excluir(Session);
+            var celulares = Session["ListaCelular"] as List<Celular>;
+            var celular = celulares?.FirstOrDefault(a => a.Id == id);
 
-            return RedirectToAction("Listar");
+            if (celular == null)
+                return Json(new { sucesso = false, mensagem = "Celular não encontrado" });
+
+            celulares.Remove(celular);
+            Session["ListaCelular"] = celulares;
+            return Json(new { sucesso = true });
         }
 
         public ActionResult Create()

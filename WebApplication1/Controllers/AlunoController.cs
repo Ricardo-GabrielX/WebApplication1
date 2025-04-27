@@ -49,8 +49,6 @@ namespace WebApplication1.Controllers
             return Json(new { sucesso = true });
         }
 
-       
-
         public ActionResult Create()
         {
             return View(new Aluno());
