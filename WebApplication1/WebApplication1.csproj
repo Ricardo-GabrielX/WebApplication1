@@ -178,6 +178,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="Content\styles\Evento\Listar.css" />
     <Compile Include="Controllers\AlunoController.cs" />
     <Compile Include="Controllers\CarroController.cs" />
     <Compile Include="Controllers\CelularController.cs" />
@@ -210,6 +211,8 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\styles\buttons.css" />
+    <Content Include="Content\styles\Carro\Listar.css" />
+    <Content Include="Content\styles\Celular\Listar.css" />
     <Content Include="Content\styles\Create.css" />
     <Content Include="Content\styles\Editar.css" />
     <Content Include="Content\styles\Exibir.css" />

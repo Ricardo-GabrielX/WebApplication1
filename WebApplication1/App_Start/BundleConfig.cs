@@ -29,6 +29,18 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/Aluno").Include(
                 "~/Content/styles/Aluno/Listar.css"
              ));
+            
+            bundles.Add(new StyleBundle("~/Content/Carro").Include(
+                "~/Content/styles/Carro/Listar.css"
+             ));
+
+            bundles.Add(new StyleBundle("~/Content/Celular").Include(
+                "~/Content/styles/Celular/Listar.css"
+             ));
+
+            bundles.Add(new StyleBundle("~/Content/Evento").Include(
+                "~/Content/styles/Evento/Listar.css"
+             ));
 
             bundles.Add(new StyleBundle("~/Content/styles").Include(
                 "~/Content/styles/Create.css",
