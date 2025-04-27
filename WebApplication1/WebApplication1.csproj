@@ -209,10 +209,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\styles\Aluno\buttons.css" />
-    <Content Include="Content\styles\Aluno\Create.css" />
-    <Content Include="Content\styles\Aluno\Editar.css" />
-    <Content Include="Content\styles\Aluno\Exibir.css" />
+    <Content Include="Content\styles\buttons.css" />
+    <Content Include="Content\styles\Create.css" />
+    <Content Include="Content\styles\Editar.css" />
+    <Content Include="Content\styles\Exibir.css" />
     <Content Include="Content\styles\Aluno\Listar.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

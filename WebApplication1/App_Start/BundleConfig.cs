@@ -27,11 +27,14 @@ namespace WebApplication1
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/Aluno").Include(
-                "~/Content/styles/Aluno/Listar.css",
-                "~/Content/styles/Aluno/Create.css",
-                "~/Content/styles/Aluno/Exibir.css",
-                "~/Content/styles/Aluno/Editar.css",
-                "~/Content/styles/Aluno/buttons.css"
+                "~/Content/styles/Aluno/Listar.css"
+             ));
+
+            bundles.Add(new StyleBundle("~/Content/styles").Include(
+                "~/Content/styles/Create.css",
+                "~/Content/styles/Exibir.css",
+                "~/Content/styles/Editar.css",
+                "~/Content/styles/buttons.css"
                 ));
         }
     }
