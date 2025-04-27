@@ -32,19 +32,18 @@ namespace WebApplication1.Controllers
             return View(evento);
         }
 
-        public ActionResult Delete(int id)
-        {
-            return View((Session["ListaEvento"] as List<Evento>).ElementAt(id));
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
-        public ActionResult Delete(int id, Evento evento)
+        public ActionResult DeleteAjax(int id)
         {
-            Evento.Procurar(Session, id)?.Excluir(Session);
+            var eventos = Session["ListaEvento"] as List<Evento>;
+            var evento = eventos?.FirstOrDefault(a => a.Id == id);
 
-            return RedirectToAction("Listar");
+            if (evento == null)
+                return Json(new { sucesso = false, mensagem = "Aluno não encontrado" });
+
+            eventos.Remove(evento);
+            Session["ListaAluno"] = eventos;
+            return Json(new { sucesso = true });
         }
 
         public ActionResult Create()
