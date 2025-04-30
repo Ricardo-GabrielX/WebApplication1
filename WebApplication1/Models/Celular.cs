@@ -10,7 +10,10 @@ namespace WebApplication1.Models
     {
         public int Id { get; set; }
 
+       
+
         [Required(ErrorMessage = "O número é obrigatório.")]
+        [RegularExpression(@"^[\d\-\(\)\s]{11,15}$", ErrorMessage = "Número inválido. Digite 11 dígitos.")]
         public string Numero { get; set; }
 
         [Required(ErrorMessage = "A marca é obrigatório.")]

@@ -19,35 +19,44 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="edit-form">
-    @Html.ValidationSummary(true, "", new { @class = "edit-validation-summary" })
+        <div class="edit-form">
+            @Html.ValidationSummary(true, "", new { @class = "edit-validation-summary" })
 
-    <div class="edit-form-group">
-        @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "edit-form-label" })
-        @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "edit-form-input", placeholder = "Nome completo" } })
-        @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "edit-validation-message" })
-    </div>
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.EditorFor(model => model.Numero, new
+                {
+                    htmlAttributes = new
+                    {
+                        @class = "edit-form-input telefone-mask",
+                        placeholder = "(99) 99999-9999",
+                        type = "tel",
+                        maxlength = "15"
+                    }
+                })
+                @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "edit-validation-message" })
+            </div>
 
-    <div class="edit-form-group">
-        @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "edit-form-label" })
-        @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "edit-form-input", placeholder = "000000000" } })
-        @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "edit-validation-message" })
-    </div>
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "edit-form-input", placeholder = "000000000" } })
+                @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "edit-validation-message" })
+            </div>
 
-    <div class="edit-form-group">
-        @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "edit-form-label" })
-        @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "edit-form-input" } })
-        @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "edit-validation-message" })
-    </div>
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "edit-form-input" } })
+                @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "edit-validation-message" })
+            </div>
 
-    <div class="edit-form-group">
-        @Html.LabelFor(model => model.DataCompra, htmlAttributes: new { @class = "edit-form-label" })
-        @Html.TextBoxFor(model => model.DataCompra, "{0:yyyy-MM-dd}", new { @class = "edit-form-input", type = "date" })
-        @Html.ValidationMessageFor(model => model.DataCompra, "", new { @class = "edit-validation-message" })
-    </div>
+            <div class="edit-form-group">
+                @Html.LabelFor(model => model.DataCompra, htmlAttributes: new { @class = "edit-form-label" })
+                @Html.TextBoxFor(model => model.DataCompra, "{0:yyyy-MM-dd}", new { @class = "edit-form-input", type = "date" })
+                @Html.ValidationMessageFor(model => model.DataCompra, "", new { @class = "edit-validation-message" })
+            </div>
 
 
-</div>
+        </div>
 
         <div class="edit-form-actions">
             <a href="@link" class="button-btn-secondary">
@@ -62,4 +71,24 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>$(document).ready(function() {
+            $('.telefone-mask').mask('(00) 00000-0000');
+
+            var numeroValue = $('.telefone-mask').val();
+            if (numeroValue && numeroValue.replace(/\D/g, '').length === 11) {
+                $('.telefone-mask').val(
+                    numeroValue.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+                );
+            }
+
+            $('form').submit(function() {
+                $('.telefone-mask').each(function() {
+                    $(this).val($(this).cleanVal());
+                });
+                return true;
+            });
+        });</script>
 }

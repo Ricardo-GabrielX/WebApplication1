@@ -23,40 +23,62 @@
             <div class="form-fields-container">
                 <div class="form-group">
                     @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "form-label" })
-                    @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-input", placeholder = "Número de telefone" } })
+                    @Html.EditorFor(model => model.Numero, new
+                     {
+                         htmlAttributes = new
+                         {
+                             @class = "form-input telefone-mask",
+                             placeholder = "Ex: (99) 99999-9999",
+                             type = "tel",
+                             maxlength = "15"
+                         }
+                     })
                     @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "form-validation" })
                 </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-input", placeholder = "Marca do telefone" } })
+                        @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "form-validation" })
+                    </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "form-label" })
-                    @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-input", placeholder = "Marca do telefone" } })
-                    @Html.ValidationMessageFor(model => model.Marca, "", new { @class = "form-validation" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "form-input text-end" } })
+                        @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "form-validation" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DataCompra, htmlAttributes: new { @class = "form-label" })
+                        @Html.EditorFor(model => model.DataCompra, new { htmlAttributes = new { @class = "form-input", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.DataCompra, "", new { @class = "form-validation" })
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Novo, htmlAttributes: new { @class = "form-label" })
-                    @Html.EditorFor(model => model.Novo, new { htmlAttributes = new { @class = "form-input text-end" } })
-                    @Html.ValidationMessageFor(model => model.Novo, "", new { @class = "form-validation" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DataCompra, htmlAttributes: new { @class = "form-label" })
-                    @Html.EditorFor(model => model.DataCompra, new { htmlAttributes = new { @class = "form-input", type = "date" } })
-                    @Html.ValidationMessageFor(model => model.DataCompra, "", new { @class = "form-validation" })
+                <div class="form-actions">
+                    <a href="@link" class="button-btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Voltar
+                    </a>
+                    <button type="submit" class="button-btn-primary">
+                        <i class="bi bi-check-lg"></i> Salvar
+                    </button>
                 </div>
             </div>
-
-            <div class="form-actions">
-                <a href="@link" class="button-btn-secondary">
-                    <i class="bi bi-arrow-left"></i> Voltar
-                </a>
-                <button type="submit" class="button-btn-primary">
-                    <i class="bi bi-check-lg"></i> Salvar
-                </button>
-            </div>
-        </div>
     }
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.telefone-mask').mask('(00) 00000-0000');
+
+            $('form').submit(function () {
+                $('.telefone-mask').each(function () {
+                    $(this).val($(this).cleanVal());
+                });
+            });
+        });
+    </script>
 }
